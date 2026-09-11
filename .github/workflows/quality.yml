@@ -5,9 +5,6 @@ permissions:
 jobs:
   quality:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: src
     steps:
       - uses: actions/checkout@v4
       - uses: astral-sh/setup-uv@v6
@@ -15,7 +12,7 @@ jobs:
           version: '0.11.15'
       - run: uv lock
       - run: uv sync
-      - run: uv run ruff check src
-      - run: uv run ruff format --check src
+      - run: uv run ruff check .
+      - run: uv run ruff format --check .
       - run: pyrefly init
       - run: uv run pyrefly check
